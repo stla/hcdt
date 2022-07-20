@@ -1,5 +1,5 @@
 #include <cstdlib> // to use malloc
-// #include <stdio.h> // to use printf
+#include <stdio.h> // to use printf
 #include "hcdt.hpp"
 #include "CDT.h"
 
@@ -66,11 +66,12 @@ CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_
   }
   cdt.insertVertices(vertices);
   cdt.insertEdges(Edges);
-  cdt.eraseOuterTrianglesAndHoles();
+  //cdt.eraseOuterTrianglesAndHoles();
   //// output
   // triangles
   const CDT::TriangleVec triangles = cdt.triangles;
   const size_t ntriangles = triangles.size();
+  printf("ntriangles: %u\n", ntriangles);
   TriangleT* out_triangles = (TriangleT*)malloc(ntriangles * sizeof(TriangleT));
   for(size_t k = 0; k < ntriangles; ++k){
     const CDT::VerticesArr3 trgl = triangles[k].vertices;

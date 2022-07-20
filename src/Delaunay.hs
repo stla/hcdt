@@ -36,5 +36,5 @@ cdelaunay vertices edges = do
   cctriangulation <- peek cctriangulationPtr 
   free verticesPtr
   free edgesPtr
-  free cctriangulationPtr
+  -- free cctriangulationPtr
   cCTriangulationToConstrainedTriangulation cctriangulation
