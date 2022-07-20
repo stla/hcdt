@@ -50,4 +50,69 @@ TriangulationT* delaunay(VertexT* points, size_t npoints){
   return out;
 }
 
+CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_t nfedges){
+  CDT::Triangulation<double> cdt(CDT::VertexInsertionOrder::AsProvided);
+  // insert vertices
+  std::vector<CDT::V2d<double>> vertices(npoints);
+  for(size_t k = 0; k < npoints; ++k) {
+    const VertexT v = points[k];
+    vertices[k] = CDT::V2d<double>::make(v.x, v.y);
+  }
+  std::vector<CDT::Edge> Edges;
+  Edges.reserve(nfedges);
+  for (size_t k = 0; k < nfedges; ++k) {
+    const EdgeT e = fedges[k];
+    Edges.push_back(CDT::Edge(e.i, e.j));
+  }
+  cdt.insertVertices(vertices);
+  cdt.insertEdges(Edges);
+  cdt.eraseOuterTrianglesAndHoles();
+  //// output
+  // triangles
+  const CDT::TriangleVec triangles = cdt.triangles;
+  const size_t ntriangles = triangles.size();
+  TriangleT* out_triangles = (TriangleT*)malloc(ntriangles * sizeof(TriangleT));
+  for(size_t k = 0; k < ntriangles; ++k){
+    const CDT::VerticesArr3 trgl = triangles[k].vertices;
+    out_triangles[k].i1 = trgl[0];
+    out_triangles[k].i2 = trgl[1];
+    out_triangles[k].i3 = trgl[2];
+  }
+  // all edges
+  CDT::EdgeUSet allEdges = CDT::extractEdgesFromTriangles(triangles);
+  const size_t nedges = allEdges.size();
+  EdgeT* out_alledges = (EdgeT*)malloc(nedges * sizeof(EdgeT));
+  std::unordered_set<CDT::Edge> :: iterator it;
+  size_t k = 0;
+  for(it = allEdges.begin(); it != allEdges.end(); it++){
+    const CDT::Edge edge = *it;
+    out_alledges[k].i = CDT::edge_get_v1(edge);
+    out_alledges[k].j = CDT::edge_get_v2(edge);
+    k++;
+  }
+  // fixed edges
+  CDT::EdgeUSet fixedEdges = cdt.fixedEdges;
+  const size_t nfixededges = fixedEdges.size();
+  EdgeT* out_fixededges = (EdgeT*)malloc(nfixededges * sizeof(EdgeT));
+  std::unordered_set<CDT::Edge> :: iterator itedge;
+  size_t l = 0;
+  for(itedge = fixedEdges.begin(); itedge != fixedEdges.end(); itedge++){
+    const CDT::Edge edge = *itedge;
+    out_fixededges[l].i = CDT::edge_get_v1(edge);
+    out_fixededges[l].j = CDT::edge_get_v2(edge);
+    l++;
+  }
+  /* output mesh */
+  CTriangulationT* out = (CTriangulationT*)malloc(sizeof(CTriangulationT));
+  out->vertices = points;
+  out->nvertices = npoints;
+  out->triangles = out_triangles;
+  out->ntriangles = ntriangles;
+  out->edges = out_alledges;
+  out->nedges = nedges;
+  out->fixededges = out_fixededges;
+  out->nedges = nfixededges;
+  return out;
+}
+
 }
