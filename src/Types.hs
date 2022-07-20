@@ -21,3 +21,8 @@ data Triangulation = Triangulation {
   , _triangles :: [Triangle]
   , _edges     :: [Edge]
 } deriving Show
+
+data ConstrainedTriangulation = ConstrainedTriangulation {
+    _triangulation :: Triangulation
+  , _fixedEdges    :: [Edge]
+} deriving Show

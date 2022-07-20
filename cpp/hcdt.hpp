@@ -15,10 +15,21 @@ typedef struct Triangle {
 } TriangleT;
 
 typedef struct Triangulation {
-  VertexT* vertices;
-  size_t nvertices;
+  VertexT*   vertices;
+  size_t     nvertices;
   TriangleT* triangles;
-  size_t ntriangles;
-  EdgeT* edges;
-  size_t nedges;
+  size_t     ntriangles;
+  EdgeT*     edges;
+  size_t     nedges;
 } TriangulationT;
+
+typedef struct CTriangulation {
+  VertexT*   vertices;
+  size_t     nvertices;
+  TriangleT* triangles;
+  size_t     ntriangles;
+  EdgeT*     edges;
+  size_t     nedges;
+  EdgeT*     fixededges;
+  size_t     nfixededges;
+} CTriangulationT;
