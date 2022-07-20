@@ -17,4 +17,6 @@ Triangulation
   , _triangles = [ Triangle 1 0 2 , Triangle 2 0 3 ]
   , _edges = [ Edge 2 3 , Edge 0 3 , Edge 1 2 , Edge 0 2 , Edge 0 1 ]
   }
+ghci> pPrint $ borderEdges triangulation
+fromList [ Edge 1 0 , Edge 1 2 , Edge 0 3 , Edge 2 3 ]
 ```

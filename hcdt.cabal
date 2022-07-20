@@ -19,6 +19,7 @@ library
                      , Triangulation
                      , Delaunay
                      , Hcdt
+                     , Utils
   build-depends:       base >= 4.7 && < 5
                      , containers
   include-dirs:        cpp
