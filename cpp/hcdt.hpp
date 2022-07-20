@@ -16,9 +16,9 @@ typedef struct Triangle {
 
 typedef struct Triangulation {
   VertexT* vertices;
-  unsigned nvertices;
+  size_t nvertices;
   TriangleT* triangles;
-  unsigned ntriangles;
+  size_t ntriangles;
   EdgeT* edges;
-  unsigned nedges;
+  size_t nedges;
 } TriangulationT;

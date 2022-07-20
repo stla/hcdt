@@ -4,7 +4,8 @@ module Triangulation
 ( cTriangulationToTriangulation
 , vertexToCVertex
 , c_delaunay 
-, CTriangulation (..))
+, CTriangulation (..)
+, CVertex (..))
   where
 import           Types
 import           Foreign
@@ -56,7 +57,7 @@ instance Storable CEdge where
     poke ptr (CEdge r1 r2)
       = do
         #{poke EdgeT, i} ptr r1
-        #{poke EdgeT, i} ptr r2
+        #{poke EdgeT, j} ptr r2
 
 cEdgeToEdge :: CEdge -> IO Edge
 cEdgeToEdge cedge = do

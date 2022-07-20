@@ -1,4 +1,5 @@
 #include <cstdlib> // to use malloc
+#include <stdio.h>
 #include "hcdt.hpp"
 #include "CDT.h"
 

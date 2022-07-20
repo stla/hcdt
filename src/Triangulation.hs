@@ -21,22 +21,22 @@ data CVertex = CVertex {
 }
 
 instance Storable CVertex where
-    sizeOf    __ = 16
-{-# LINE 22 "Triangulation.hsc" #-}
+    sizeOf    __ = (16)
+{-# LINE 24 "Triangulation.hsc" #-}
     alignment __ = 8
-{-# LINE 23 "Triangulation.hsc" #-}
+{-# LINE 25 "Triangulation.hsc" #-}
     peek ptr = do
       x'  <- (`peekByteOff` 0) ptr
-{-# LINE 25 "Triangulation.hsc" #-}
+{-# LINE 27 "Triangulation.hsc" #-}
       y'  <- (`peekByteOff` 8) ptr
-{-# LINE 26 "Triangulation.hsc" #-}
+{-# LINE 28 "Triangulation.hsc" #-}
       return CVertex { __x = x', __y = y' }
     poke ptr (CVertex r1 r2)
       = do
         (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r1
-{-# LINE 30 "Triangulation.hsc" #-}
+{-# LINE 32 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 8) ptr r2
-{-# LINE 31 "Triangulation.hsc" #-}
+{-# LINE 33 "Triangulation.hsc" #-}
 
 cVertexToVertex :: CVertex -> IO Vertex
 cVertexToVertex cvertex = do
@@ -54,23 +54,23 @@ data CEdge = CEdge {
 }
 
 instance Storable CEdge where
-    sizeOf    __ = 8
-{-# LINE 45 "Triangulation.hsc" #-}
+    sizeOf    __ = (8)
+{-# LINE 51 "Triangulation.hsc" #-}
     alignment __ = 4
-{-# LINE 46 "Triangulation.hsc" #-}
+{-# LINE 52 "Triangulation.hsc" #-}
     peek ptr = do
       i'  <- (`peekByteOff` 0) ptr
-{-# LINE 48 "Triangulation.hsc" #-}
+{-# LINE 54 "Triangulation.hsc" #-}
       j'  <- (`peekByteOff` 4) ptr
-{-# LINE 49 "Triangulation.hsc" #-}
+{-# LINE 55 "Triangulation.hsc" #-}
       return CEdge { __i = i'
                    , __j = j' }
     poke ptr (CEdge r1 r2)
       = do
         (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r1
-{-# LINE 54 "Triangulation.hsc" #-}
-        (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r2
-{-# LINE 55 "Triangulation.hsc" #-}
+{-# LINE 60 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 4) ptr r2
+{-# LINE 61 "Triangulation.hsc" #-}
 
 cEdgeToEdge :: CEdge -> IO Edge
 cEdgeToEdge cedge = do
@@ -85,28 +85,28 @@ data CTriangle = CTriangle {
 }
 
 instance Storable CTriangle where
-    sizeOf    __ = 12
-{-# LINE 70 "Triangulation.hsc" #-}
+    sizeOf    __ = (12)
+{-# LINE 76 "Triangulation.hsc" #-}
     alignment __ = 4
-{-# LINE 71 "Triangulation.hsc" #-}
+{-# LINE 77 "Triangulation.hsc" #-}
     peek ptr = do
       i1'  <- (`peekByteOff` 0) ptr
-{-# LINE 73 "Triangulation.hsc" #-}
+{-# LINE 79 "Triangulation.hsc" #-}
       i2'  <- (`peekByteOff` 4) ptr
-{-# LINE 74 "Triangulation.hsc" #-}
+{-# LINE 80 "Triangulation.hsc" #-}
       i3'  <- (`peekByteOff` 8) ptr
-{-# LINE 75 "Triangulation.hsc" #-}
+{-# LINE 81 "Triangulation.hsc" #-}
       return CTriangle { __i1 = i1'
                        , __i2 = i2'
                        , __i3 = i3' }
     poke ptr (CTriangle r1 r2 r3)
       = do
         (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r1
-{-# LINE 81 "Triangulation.hsc" #-}
+{-# LINE 87 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 4) ptr r2
-{-# LINE 82 "Triangulation.hsc" #-}
+{-# LINE 88 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 8) ptr r3
-{-# LINE 83 "Triangulation.hsc" #-}
+{-# LINE 89 "Triangulation.hsc" #-}
 
 cTriangleToTriangle :: CTriangle -> IO Triangle
 cTriangleToTriangle ctriangle = do
@@ -126,22 +126,22 @@ data CTriangulation = CTriangulation {
 
 instance Storable CTriangulation where
     sizeOf    __ = (48)
-{-# LINE 102 "Triangulation.hsc" #-}
+{-# LINE 108 "Triangulation.hsc" #-}
     alignment __ = 8
-{-# LINE 103 "Triangulation.hsc" #-}
+{-# LINE 109 "Triangulation.hsc" #-}
     peek ptr = do
       vs  <- (`peekByteOff` 0) ptr
-{-# LINE 105 "Triangulation.hsc" #-}
+{-# LINE 111 "Triangulation.hsc" #-}
       nvs <- (`peekByteOff` 8) ptr
-{-# LINE 106 "Triangulation.hsc" #-}
+{-# LINE 112 "Triangulation.hsc" #-}
       ts  <- (`peekByteOff` 16) ptr
-{-# LINE 107 "Triangulation.hsc" #-}
+{-# LINE 113 "Triangulation.hsc" #-}
       nts <- (`peekByteOff` 24) ptr
-{-# LINE 108 "Triangulation.hsc" #-}
+{-# LINE 114 "Triangulation.hsc" #-}
       es  <- (`peekByteOff` 32) ptr
-{-# LINE 109 "Triangulation.hsc" #-}
+{-# LINE 115 "Triangulation.hsc" #-}
       nes <- (`peekByteOff` 40) ptr
-{-# LINE 110 "Triangulation.hsc" #-}
+{-# LINE 116 "Triangulation.hsc" #-}
       return CTriangulation { __vertices   = vs
                             , __nvertices  = nvs
                             , __triangles  = ts
@@ -151,17 +151,17 @@ instance Storable CTriangulation where
     poke ptr (CTriangulation r1 r2 r3 r4 r5 r6)
       = do
         (\hsc_ptr -> pokeByteOff hsc_ptr 0)   ptr r1
-{-# LINE 119 "Triangulation.hsc" #-}
+{-# LINE 125 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 8)  ptr r2
-{-# LINE 120 "Triangulation.hsc" #-}
+{-# LINE 126 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 16)  ptr r3
-{-# LINE 121 "Triangulation.hsc" #-}
+{-# LINE 127 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 24) ptr r4
-{-# LINE 122 "Triangulation.hsc" #-}
+{-# LINE 128 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 32)      ptr r5
-{-# LINE 123 "Triangulation.hsc" #-}
+{-# LINE 129 "Triangulation.hsc" #-}
         (\hsc_ptr -> pokeByteOff hsc_ptr 40)     ptr r6
-{-# LINE 124 "Triangulation.hsc" #-}
+{-# LINE 130 "Triangulation.hsc" #-}
 
 cTriangulationToTriangulation :: CTriangulation -> IO Triangulation
 cTriangulationToTriangulation ctriangulation = do
