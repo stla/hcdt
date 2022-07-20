@@ -5,7 +5,7 @@
 extern "C"
 {
 
-TriangulationT delaunay(VertexT* points, size_t npoints){
+TriangulationT* delaunay(VertexT* points, size_t npoints){
   CDT::Triangulation<double> cdt(CDT::VertexInsertionOrder::AsProvided);
   // insert vertices
   std::vector<CDT::V2d<double>> vertices(npoints);
@@ -39,13 +39,13 @@ TriangulationT delaunay(VertexT* points, size_t npoints){
     k++;
   }
   /* output mesh */
-  TriangulationT out;
-  out.vertices = points;
-  out.nvertices = npoints;
-  out.triangles = out_triangles;
-  out.ntriangles = ntriangles;
-  out.edges = out_alledges;
-  out.nedges = nedges;
+  TriangulationT* out = (TriangulationT*)malloc(sizeof(TriangulationT));
+  out->vertices = points;
+  out->nvertices = npoints;
+  out->triangles = out_triangles;
+  out->ntriangles = ntriangles;
+  out->edges = out_alledges;
+  out->nedges = nedges;
   return out;
 }
 
