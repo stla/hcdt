@@ -1,3 +1,4 @@
+{-# LINE 1 "Triangulation.hsc" #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 {-# LANGUAGE CPP #-}
 module Triangulation
@@ -10,7 +11,7 @@ import           Foreign
 import           Foreign.C.Types
 import qualified Data.IntMap.Strict as IM
 
-#include "hcdt.hpp"
+
 
 data CVertex = CVertex {
     __x :: CDouble
@@ -18,16 +19,22 @@ data CVertex = CVertex {
 }
 
 instance Storable CVertex where
-    sizeOf    __ = #{size VertexT}
-    alignment __ = #{alignment VertexT}
+    sizeOf    __ = (16)
+{-# LINE 22 "Triangulation.hsc" #-}
+    alignment __ = 8
+{-# LINE 23 "Triangulation.hsc" #-}
     peek ptr = do
-      x'  <- #{peek VertexT, x} ptr
-      y'  <- #{peek VertexT, y} ptr
+      x'  <- (\hsc_ptr -> peekByteOff hsc_ptr 0) ptr
+{-# LINE 25 "Triangulation.hsc" #-}
+      y'  <- (\hsc_ptr -> peekByteOff hsc_ptr 8) ptr
+{-# LINE 26 "Triangulation.hsc" #-}
       return CVertex { __x = x', __y = y' }
     poke ptr (CVertex r1 r2)
       = do
-        #{poke VertexT, x} ptr r1
-        #{poke VertexT, y} ptr r2
+        (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r1
+{-# LINE 30 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 8) ptr r2
+{-# LINE 31 "Triangulation.hsc" #-}
 
 cVertexToVertex :: CVertex -> IO Vertex
 cVertexToVertex cvertex = do
@@ -41,17 +48,23 @@ data CEdge = CEdge {
 }
 
 instance Storable CEdge where
-    sizeOf    __ = #{size EdgeT}
-    alignment __ = #{alignment EdgeT}
+    sizeOf    __ = (8)
+{-# LINE 45 "Triangulation.hsc" #-}
+    alignment __ = 4
+{-# LINE 46 "Triangulation.hsc" #-}
     peek ptr = do
-      i'  <- #{peek EdgeT, i} ptr
-      j'  <- #{peek EdgeT, j} ptr
+      i'  <- (\hsc_ptr -> peekByteOff hsc_ptr 0) ptr
+{-# LINE 48 "Triangulation.hsc" #-}
+      j'  <- (\hsc_ptr -> peekByteOff hsc_ptr 4) ptr
+{-# LINE 49 "Triangulation.hsc" #-}
       return CEdge { __i = i'
                    , __j = j' }
     poke ptr (CEdge r1 r2)
       = do
-        #{poke EdgeT, i} ptr r1
-        #{poke EdgeT, i} ptr r2
+        (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r1
+{-# LINE 54 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r2
+{-# LINE 55 "Triangulation.hsc" #-}
 
 cEdgeToEdge :: CEdge -> IO Edge
 cEdgeToEdge cedge = do
@@ -66,20 +79,28 @@ data CTriangle = CTriangle {
 }
 
 instance Storable CTriangle where
-    sizeOf    __ = #{size TriangleT}
-    alignment __ = #{alignment TriangleT}
+    sizeOf    __ = (12)
+{-# LINE 70 "Triangulation.hsc" #-}
+    alignment __ = 4
+{-# LINE 71 "Triangulation.hsc" #-}
     peek ptr = do
-      i1'  <- #{peek TriangleT, i1} ptr
-      i2'  <- #{peek TriangleT, i2} ptr
-      i3'  <- #{peek TriangleT, i3} ptr
+      i1'  <- (\hsc_ptr -> peekByteOff hsc_ptr 0) ptr
+{-# LINE 73 "Triangulation.hsc" #-}
+      i2'  <- (\hsc_ptr -> peekByteOff hsc_ptr 4) ptr
+{-# LINE 74 "Triangulation.hsc" #-}
+      i3'  <- (\hsc_ptr -> peekByteOff hsc_ptr 8) ptr
+{-# LINE 75 "Triangulation.hsc" #-}
       return CTriangle { __i1 = i1'
                        , __i2 = i2'
                        , __i3 = i3' }
     poke ptr (CTriangle r1 r2 r3)
       = do
-        #{poke TriangleT, i1} ptr r1
-        #{poke TriangleT, i2} ptr r2
-        #{poke TriangleT, i3} ptr r3
+        (\hsc_ptr -> pokeByteOff hsc_ptr 0) ptr r1
+{-# LINE 81 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 4) ptr r2
+{-# LINE 82 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 8) ptr r3
+{-# LINE 83 "Triangulation.hsc" #-}
 
 cTriangleToTriangle :: CTriangle -> IO Triangle
 cTriangleToTriangle ctriangle = do
@@ -98,15 +119,23 @@ data CTriangulation = CTriangulation {
 }
 
 instance Storable CTriangulation where
-    sizeOf    __ = #{size TriangulationT}
-    alignment __ = #{alignment TriangulationT}
+    sizeOf    __ = (48)
+{-# LINE 102 "Triangulation.hsc" #-}
+    alignment __ = 8
+{-# LINE 103 "Triangulation.hsc" #-}
     peek ptr = do
-      vs  <- #{peek TriangulationT, vertices} ptr
-      nvs <- #{peek TriangulationT, nvertices} ptr
-      ts  <- #{peek TriangulationT, triangles} ptr
-      nts <- #{peek TriangulationT, ntriangles} ptr
-      es  <- #{peek TriangulationT, edges} ptr
-      nes <- #{peek TriangulationT, nedges} ptr
+      vs  <- (\hsc_ptr -> peekByteOff hsc_ptr 0) ptr
+{-# LINE 105 "Triangulation.hsc" #-}
+      nvs <- (\hsc_ptr -> peekByteOff hsc_ptr 8) ptr
+{-# LINE 106 "Triangulation.hsc" #-}
+      ts  <- (\hsc_ptr -> peekByteOff hsc_ptr 16) ptr
+{-# LINE 107 "Triangulation.hsc" #-}
+      nts <- (\hsc_ptr -> peekByteOff hsc_ptr 24) ptr
+{-# LINE 108 "Triangulation.hsc" #-}
+      es  <- (\hsc_ptr -> peekByteOff hsc_ptr 32) ptr
+{-# LINE 109 "Triangulation.hsc" #-}
+      nes <- (\hsc_ptr -> peekByteOff hsc_ptr 40) ptr
+{-# LINE 110 "Triangulation.hsc" #-}
       return CTriangulation { __vertices   = vs
                             , __nvertices  = nvs
                             , __triangles  = ts
@@ -115,12 +144,18 @@ instance Storable CTriangulation where
                             , __nedges     = nes }
     poke ptr (CTriangulation r1 r2 r3 r4 r5 r6)
       = do
-        #{poke TriangulationT, vertices}   ptr r1
-        #{poke TriangulationT, nvertices}  ptr r2
-        #{poke TriangulationT, triangles}  ptr r3
-        #{poke TriangulationT, ntriangles} ptr r4
-        #{poke TriangulationT, edges}      ptr r5
-        #{poke TriangulationT, nedges}     ptr r6
+        (\hsc_ptr -> pokeByteOff hsc_ptr 0)   ptr r1
+{-# LINE 119 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 8)  ptr r2
+{-# LINE 120 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 16)  ptr r3
+{-# LINE 121 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 24) ptr r4
+{-# LINE 122 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 32)      ptr r5
+{-# LINE 123 "Triangulation.hsc" #-}
+        (\hsc_ptr -> pokeByteOff hsc_ptr 40)     ptr r6
+{-# LINE 124 "Triangulation.hsc" #-}
 
 cTriangulationToTriangulation :: CTriangulation -> IO Triangulation
 cTriangulationToTriangulation ctriangulation = do
