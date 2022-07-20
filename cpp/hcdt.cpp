@@ -58,6 +58,7 @@ CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_
     const VertexT v = points[k];
     vertices[k] = CDT::V2d<double>::make(v.x, v.y);
   }
+  // insert edges
   std::vector<CDT::Edge> Edges;
   Edges.reserve(nfedges);
   for (size_t k = 0; k < nfedges; ++k) {
@@ -66,12 +67,12 @@ CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_
   }
   cdt.insertVertices(vertices);
   cdt.insertEdges(Edges);
-  //cdt.eraseOuterTrianglesAndHoles();
+  cdt.eraseOuterTrianglesAndHoles();
   //// output
   // triangles
   const CDT::TriangleVec triangles = cdt.triangles;
   const size_t ntriangles = triangles.size();
-  printf("ntriangles: %u\n", ntriangles);
+  //printf("ntriangles: %u\n", ntriangles);
   TriangleT* out_triangles = (TriangleT*)malloc(ntriangles * sizeof(TriangleT));
   for(size_t k = 0; k < ntriangles; ++k){
     const CDT::VerticesArr3 trgl = triangles[k].vertices;
@@ -112,7 +113,7 @@ CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_
   out->edges = out_alledges;
   out->nedges = nedges;
   out->fixededges = out_fixededges;
-  out->nedges = nfixededges;
+  out->nfixededges = nfixededges;
   return out;
 }
 
