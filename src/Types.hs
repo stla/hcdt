@@ -13,10 +13,10 @@ data Triangle = Triangle Int Int Int
 instance Eq Triangle where
     Triangle i j k == Triangle i' j' k' = cantorTripling (i, j, k) == cantorTripling (i', j', k')
 
-data Edge = Pair Int Int
+data Edge = Edge Int Int
   deriving (Show, Read)
 instance Eq Edge where
-    Pair i j == Pair i' j' = (i == i' && j == j') || (i == j' && j == i')
+    Edge i j == Edge i' j' = (i == i' && j == j') || (i == j' && j == i')
 
 data Vertex = Vertex Double Double
   deriving (Show, Eq)
