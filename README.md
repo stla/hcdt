@@ -4,7 +4,7 @@
 
 ```haskell
 ghci> import Text.Show.Pretty
-ghci> import Hcdt
+ghci> import Geometry.HCDT
 ghci> vertices = [Vertex 0 0, Vertex 0 1, Vertex 1 1, Vertex 1 0]
 ghci> triangulation <- delaunay vertices
 ghci> pPrint triangulation
@@ -28,7 +28,7 @@ fromList [ Edge 1 0 , Edge 1 2 , Edge 0 3 , Edge 2 3 ]
 
 ```haskell
 ghci> import Text.Show.Pretty
-ghci> import Hcdt
+ghci> import Geometry.HCDT
 ghci> vertices = [Vertex 1 1, Vertex 3 1, Vertex 2 2, Vertex 0 0, Vertex 4 0, Vertex 2 5]
 ghci> edges = [Edge 0 1, Edge 0 2, Edge 1 2, Edge 3 4, Edge 3 5, Edge 4 5]
 ghci> triangulation <- cdelaunay vertices edges

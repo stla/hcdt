@@ -16,11 +16,11 @@ extra-source-files:  README.md
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Hcdt
-  other-modules:       Types
-                     , Triangulation
-                     , Delaunay
-                     , Utils
+  exposed-modules:     Geometry.HCDT
+  other-modules:       Geometry.HCDT.Types
+                     , Geometry.HCDT.Triangulation
+                     , Geometry.HCDT.Delaunay
+                     , Geometry.HCDT.Utils
   build-depends:       base >= 4.7 && < 5
                      , containers
                      , indexed-traversable

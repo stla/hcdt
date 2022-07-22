@@ -1,14 +1,14 @@
-module Delaunay
+module Geometry.HCDT.Delaunay
   ( delaunay,
     cdelaunay
   )
 where
 
-import           Foreign.Marshal.Alloc (free, mallocBytes)
-import           Foreign.Marshal.Array (pokeArray)
-import           Foreign.Storable      (peek, sizeOf)
-import           Triangulation
-import           Types                 (Triangulation, Vertex, ConstrainedTriangulation, Edge)
+import           Foreign.Marshal.Alloc       (free, mallocBytes)
+import           Foreign.Marshal.Array       (pokeArray)
+import           Foreign.Storable            (peek, sizeOf)
+import           Geometry.HCDT.Triangulation
+import           Geometry.HCDT.Types         (Triangulation, Vertex, ConstrainedTriangulation, Edge)
 
 -- | Unconstrained 2d Delaunay triangulation.
 delaunay :: [Vertex] -> IO Triangulation

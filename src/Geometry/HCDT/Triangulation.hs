@@ -1,7 +1,7 @@
 {-# LINE 1 "Triangulation.hsc" #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 {-# LANGUAGE CPP #-}
-module Triangulation
+module Geometry.HCDT.Triangulation
 ( cTriangulationToTriangulation
 , cCTriangulationToConstrainedTriangulation
 , vertexToCVertex
@@ -13,7 +13,7 @@ module Triangulation
 , CCTriangulation (..)
 , CEdge (..) )
   where
-import           Types
+import           Geometry.HCDT.Types
 import           Foreign
 import           Foreign.C.Types
 import qualified Data.IntMap.Strict as IM

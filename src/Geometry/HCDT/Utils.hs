@@ -1,10 +1,10 @@
-module Utils
+module Geometry.HCDT.Utils
   ( borderEdges,
     partitionEdges
   )
 where
     
-import           Types 
+import           Geometry.HCDT.Types 
 import           Data.Sequence as DS     (Seq, fromList, (><), filter, drop) 
 import           Data.Maybe              (isNothing, fromJust)
 import           Data.Foldable           (find)

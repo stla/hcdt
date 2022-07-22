@@ -1,4 +1,4 @@
-module Types
+module Geometry.HCDT.Types
   where
 import           Data.IntMap.Strict (IntMap)
 import           Data.List          (sort)
