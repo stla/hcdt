@@ -1,17 +1,18 @@
 cabal-version:       2.2
 name:                hcdt
 version:             0.1.0.0
--- synopsis:
--- description:
+synopsis:            Geometric Algorithms
+description:         2d Delaunay triangulation, constrained or unconstrained
 homepage:            https://github.com/githubuser/hcdt#readme
 license:             BSD-3-Clause
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2022 Author name here
-category:            Web
+author:              Stéphane Laurent
+maintainer:          laurent_step@outlook.fr
+copyright:           2022 Stéphane Laurent
+category:            Geometry
 build-type:          Simple
 extra-source-files:  README.md
+                   , LICENSE_CDT.txt
 
 library
   hs-source-dirs:      src
