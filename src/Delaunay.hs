@@ -10,6 +10,7 @@ import           Foreign.Storable      (peek, sizeOf)
 import           Triangulation
 import           Types                 (Triangulation, Vertex, ConstrainedTriangulation, Edge)
 
+-- | Unconstrained 2d Delaunay triangulation.
 delaunay :: [Vertex] -> IO Triangulation
 delaunay vertices = do
   let nvertices = length vertices
@@ -22,6 +23,7 @@ delaunay vertices = do
   free ctriangulationPtr
   cTriangulationToTriangulation ctriangulation
 
+-- | Constrained 2d Delaunay triangulation.
 cdelaunay :: [Vertex] -> [Edge] -> IO ConstrainedTriangulation
 cdelaunay vertices edges = do
   let nvertices = length vertices
