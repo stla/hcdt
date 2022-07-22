@@ -17,6 +17,7 @@ copyright:           2022 Stéphane Laurent
 category:            Geometry
 build-type:          Simple
 extra-source-files:  README.md
+                     CHANGELOG.md
                      LICENSE_CDT.txt
 
 library
@@ -27,8 +28,8 @@ library
                      , Geometry.HCDT.Delaunay
                      , Geometry.HCDT.Utils
   build-depends:       base >= 4.7 && < 5
-                     , containers
-                     , indexed-traversable
+                     , containers >= 0.6.4.1 && < 0.7
+                     , indexed-traversable >= 0.1.2 && < 0.2
   include-dirs:        cpp
   C-sources:           cpp/hcdt.cpp
   extra-libraries:     stdc++
