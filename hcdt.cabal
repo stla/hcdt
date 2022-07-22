@@ -1,8 +1,13 @@
 cabal-version:       2.2
 name:                hcdt
 version:             0.1.0.0
-synopsis:            Geometric Algorithms
-description:         2d Delaunay triangulation, constrained or unconstrained
+synopsis:            2d Delaunay triangulation
+description:         
+    This library performs the constrained or unconstrained 2d Delaunay triangulation.
+    .
+    It uses the C++ library 'CDT'.
+    .
+    For examples, look the README file.
 homepage:            https://github.com/githubuser/hcdt#readme
 license:             BSD-3-Clause
 license-file:        LICENSE
