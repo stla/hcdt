@@ -26,7 +26,7 @@ library
   include-dirs:        cpp
   C-sources:           cpp/hcdt.cpp
   extra-libraries:     stdc++
-  ghc-options:         -Wall -optc-std=c++11
+  ghc-options:         -Wall -optcxx-std=c++11
   other-extensions:    CPP
                      , ForeignFunctionInterface
   cxx-options:         -fPIC -std=c++11
