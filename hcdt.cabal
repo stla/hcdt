@@ -12,14 +12,14 @@ copyright:           2022 Stéphane Laurent
 category:            Geometry
 build-type:          Simple
 extra-source-files:  README.md
-                   , LICENSE_CDT.txt
+                     LICENSE_CDT.txt
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Types
+  exposed-modules:     Hcdt
+  other-modules:       Types
                      , Triangulation
                      , Delaunay
-                     , Hcdt
                      , Utils
   build-depends:       base >= 4.7 && < 5
                      , containers
