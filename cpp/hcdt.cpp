@@ -51,7 +51,11 @@ TriangulationT* delaunay(VertexT* points, size_t npoints){
 }
 
 CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_t nfedges){
-  CDT::Triangulation<double> cdt(CDT::VertexInsertionOrder::AsProvided);
+  CDT::Triangulation<double> cdt(
+    CDT::VertexInsertionOrder::AsProvided,
+    CDT::IntersectingConstraintEdges::Resolve,
+    0.0
+  );
   // insert vertices
   std::vector<CDT::V2d<double>> vertices(npoints);
   for(size_t k = 0; k < npoints; ++k) {
@@ -69,6 +73,15 @@ CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_
   cdt.insertEdges(Edges);
   cdt.eraseOuterTrianglesAndHoles();
   //// output
+  // vertices
+  const std::vector<CDT::V2d<double>> cdt_vertices = cdt.vertices;
+  const size_t nvertices = cdt_vertices.size();
+  VertexT* out_vertices = (VertexT*)malloc(nvertices * sizeof(VertexT));
+  for(size_t k = 0; k < nvertices; ++k){
+    const CDT::V2d<double> v = cdt_vertices[k];
+    out_vertices[k].x = v.x;
+    out_vertices[k].y = v.y;
+  }
   // triangles
   const CDT::TriangleVec triangles = cdt.triangles;
   const size_t ntriangles = triangles.size();
@@ -106,8 +119,8 @@ CTriangulationT* cdelaunay(VertexT* points, size_t npoints, EdgeT* fedges, size_
   }
   /* output mesh */
   CTriangulationT* out = (CTriangulationT*)malloc(sizeof(CTriangulationT));
-  out->vertices = points;
-  out->nvertices = npoints;
+  out->vertices = out_vertices;
+  out->nvertices = nvertices;
   out->triangles = out_triangles;
   out->ntriangles = ntriangles;
   out->edges = out_alledges;
