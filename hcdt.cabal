@@ -1,6 +1,6 @@
 cabal-version:       2.2
 name:                hcdt
-version:             0.1.0.0
+version:             0.1.0.3
 synopsis:            2d Delaunay triangulation
 description:         
     This library performs the constrained or unconstrained 2d Delaunay triangulation.
@@ -32,6 +32,28 @@ library
                      , indexed-traversable >= 0.1.2 && < 0.2
   include-dirs:        cpp
   C-sources:           cpp/hcdt.cpp
+  install-includes:    cpp/CDT.h
+                     , cpp/CDT.hpp
+                     , cpp/CDTUtils.h
+                     , cpp/CDTUtils.hpp
+                     , cpp/hcdt.hpp
+                     , cpp/KDTree.h
+                     , cpp/LocatorKDTree.h
+                     , cpp/predicates.h
+                     , cpp/remove_at.hpp
+                     , cpp/Triangulation.h
+                     , cpp/Triangulation.hpp
+  includes:            cpp/CDT.h
+                     , cpp/CDT.hpp
+                     , cpp/CDTUtils.h
+                     , cpp/CDTUtils.hpp
+                     , cpp/hcdt.hpp
+                     , cpp/KDTree.h
+                     , cpp/LocatorKDTree.h
+                     , cpp/predicates.h
+                     , cpp/remove_at.hpp
+                     , cpp/Triangulation.h
+                     , cpp/Triangulation.hpp
   extra-libraries:     stdc++
   ghc-options:         -Wall -optcxx-std=c++11
   other-extensions:    CPP
