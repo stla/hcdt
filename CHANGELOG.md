@@ -5,3 +5,7 @@
 0.1.0.4
 -------
 * removed the upper bounds of the dependencies
+
+0.1.0.5
+-------
+* fixed the cabal file
