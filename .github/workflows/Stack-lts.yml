@@ -1,0 +1,40 @@
+name: Stack-lts
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        runner:
+          - ubuntu-latest
+          - macOS-latest
+          - windows-latest
+
+        resolver:
+          - lts       # ghc-9.4 (as of writing)
+          - lts-21.19 # ghc 9.4.7
+          - lts-21.11 # ghc-9.4.6
+          - lts-20.26 # ghc-9.2
+          - lts-19.33 # ghc-9.0
+
+      fail-fast: false
+
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: freckle/stack-action@v3
+
+      - id: stack
+        uses: freckle/stack-action@v3
+        with:
+          stack-arguments: --resolver ${{ matrix.resolver }} --copy-bins --coverage
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: ${{ steps.stack.outputs.local-hpc-root }}

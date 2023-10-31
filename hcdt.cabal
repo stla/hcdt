@@ -8,7 +8,7 @@ description:
     It uses the C++ library 'CDT'.
     .
     For examples, look the README file.
-homepage:            https://github.com/githubuser/hcdt#readme
+homepage:            https://github.com/stla/hcdt#readme
 license:             BSD-3-Clause
 license-file:        LICENSE
 author:              Stéphane Laurent
@@ -52,4 +52,4 @@ library
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/hcdt
+  location: https://github.com/stla/hcdt
