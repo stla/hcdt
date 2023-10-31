@@ -3,7 +3,7 @@ name: Stack-lts
 on:
   pull_request:
   push:
-    branches: [main, master]
+    branches: [main, master, movehsc]
 
 jobs:
   test:
