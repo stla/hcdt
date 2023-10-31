@@ -5,10 +5,11 @@ module Geometry.HCDT.Utils
 where
     
 import           Geometry.HCDT.Types 
-import           Data.Sequence as DS     (Seq, fromList, (><), filter, drop) 
+import           Data.Sequence as DS     (Seq, fromList, (><), filter, deleteAt) 
 import           Data.Maybe              (isNothing, fromJust)
-import           Data.Foldable           (find)
+import           Data.Foldable           (find, toList)
 import           Data.Foldable.WithIndex (ifind)
+import           Data.List               (nub)
 
 triangleEdges :: Triangle -> Seq Edge
 triangleEdges (Triangle i j k) = fromList [Edge i j, Edge j k, Edge i k]
@@ -30,7 +31,7 @@ isUnique :: Eq a => Seq a -> a -> Bool
 isUnique xs x = isNothing y 
   where
     (i, _) = fromJust $ ifind (\_ x' -> x' == x) xs
-    y = find (== x) (DS.drop i xs)
+    y = find (== x) (DS.deleteAt i xs)
 
 -- | Exterior edges of a Delaunay triangulation.
 borderEdges :: Triangulation -> Seq Edge
@@ -44,4 +45,4 @@ partitionEdges triangulation = (exEdges, inEdges)
   where
     edges = allEdges triangulation
     exEdges = DS.filter (isUnique edges) edges
-    inEdges = DS.filter (not . isUnique edges) edges
+    inEdges = DS.fromList $ nub $ toList $ DS.filter (not . isUnique edges) edges
