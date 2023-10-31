@@ -8,9 +8,9 @@ import Geometry.HCDT.Types
     ( Triangulation(_triangles), Edge(..), Triangle(..) ) 
 import           Data.Sequence as DS     (Seq, fromList, (><), filter, deleteAt) 
 import           Data.Maybe              (isNothing, fromJust)
-import           Data.Foldable           (find, toList)
+import           Data.Foldable           (find)
 import           Data.Foldable.WithIndex (ifind)
-import           Data.List               (nub)
+import           Witherable              (hashNub)
 
 triangleEdges :: Triangle -> Seq Edge
 triangleEdges (Triangle i j k) = fromList [Edge i j, Edge j k, Edge i k]
@@ -46,4 +46,4 @@ partitionEdges triangulation = (exEdges, inEdges)
   where
     edges = allEdges triangulation
     exEdges = DS.filter (isUnique edges) edges
-    inEdges = DS.fromList $ nub $ toList $ DS.filter (not . isUnique edges) edges
+    inEdges = hashNub $ DS.filter (not . isUnique edges) edges

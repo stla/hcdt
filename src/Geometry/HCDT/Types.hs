@@ -1,6 +1,8 @@
 {-# LANGUAGE InstanceSigs #-}
+
 module Geometry.HCDT.Types
   where
+import           Data.Hashable      (Hashable, hashWithSalt)
 import           Data.IntMap.Strict (IntMap)
 import           Data.List          (sort)
 
@@ -15,6 +17,8 @@ data Edge = Edge Int Int
 instance Eq Edge where
     (==) :: Edge -> Edge -> Bool
     Edge i j == Edge i' j' = (i == i' && j == j') || (i == j' && j == i')
+instance Hashable Edge where
+  hashWithSalt s (Edge m1 m2) = hashWithSalt s (min m1 m2) `hashWithSalt` (max m1 m2)
 
 data Vertex = Vertex Double Double
   deriving (Show, Eq)
