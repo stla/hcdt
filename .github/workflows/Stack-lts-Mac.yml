@@ -10,15 +10,12 @@ jobs:
     strategy:
       matrix:
         runner:
-          - ubuntu-latest
-          - windows-latest
+          - macOS-latest
 
         resolver:
           - lts       # ghc-9.4 (as of writing)
           - lts-21.19 # ghc 9.4.7
           - lts-21.11 # ghc-9.4.6
-          - lts-20.26 # ghc-9.2
-          - lts-19.33 # ghc-9.0
 
       fail-fast: false
 
