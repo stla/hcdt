@@ -30,7 +30,7 @@ library
   build-depends:       base >= 4.7 && < 5
                      , containers >= 0.6.4.1
                      , indexed-traversable >= 0.1.2
-                     , hashable >= 1.4.0.0
+                     , hashable >= 1.3.5.0
                      , witherable >= 0.4
   if impl(ghc >= 9.4)
     build-depends:     system-cxx-std-lib == 1.0
