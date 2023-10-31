@@ -9,3 +9,7 @@
 0.1.0.5
 -------
 * fixed the cabal file
+
+0.1.1.0
+-------
+* upgraded the 'CDT' library
