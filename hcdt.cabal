@@ -30,6 +30,12 @@ library
   build-depends:       base >= 4.7 && < 5
                      , containers >= 0.6.4.1
                      , indexed-traversable >= 0.1.2
+  if impl(ghc >= 9.4)
+    build-depends:     system-cxx-std-lib == 1.0
+  elif os(darwin) || os(freebsd)
+    extra-libraries:   c++11
+  else
+    extra-libraries:   stdc++
   include-dirs:        cpp
   C-sources:           cpp/hcdt.cpp
   install-includes:    cpp/CDT.h
@@ -43,8 +49,10 @@ library
                      , cpp/remove_at.hpp
                      , cpp/Triangulation.h
                      , cpp/Triangulation.hpp
-  extra-libraries:     stdc++
-  ghc-options:         -Wall -optcxx-std=c++11
+  ghc-options:         -Wall 
+                       -optcxx-std=c++11
+  if os(darwin) || os(freebsd)
+    ghc-options:       -optcxx-stdlib=libc++
   other-extensions:    CPP
                      , ForeignFunctionInterface
   cxx-options:         -fPIC -std=c++11
