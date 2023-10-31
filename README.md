@@ -1,5 +1,11 @@
 # hcdt
 
+<!-- badges: start -->
+[![Stack-lts](https://github.com/stla/hcdt/actions/workflows/Stack-lts.yml/badge.svg)](https://github.com/stla/hcdt/actions/workflows/Stack-lts.yml)
+[![Stack-nightly](https://github.com/stla/hcdt/actions/workflows/Stack-nightly.yml/badge.svg)](https://github.com/stla/hcdt/actions/workflows/Stack-nightly.yml)
+<!-- badges: end -->
+
+
 ### Delaunay triangulation 
 
 ```haskell
