@@ -4,7 +4,8 @@ module Geometry.HCDT.Utils
   )
 where
     
-import           Geometry.HCDT.Types 
+import Geometry.HCDT.Types
+    ( Triangulation(_triangles), Edge(..), Triangle(..) ) 
 import           Data.Sequence as DS     (Seq, fromList, (><), filter, deleteAt) 
 import           Data.Maybe              (isNothing, fromJust)
 import           Data.Foldable           (find, toList)

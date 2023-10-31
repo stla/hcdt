@@ -1,3 +1,4 @@
+{-# LANGUAGE InstanceSigs #-}
 module Geometry.HCDT.Types
   where
 import           Data.IntMap.Strict (IntMap)
@@ -6,11 +7,13 @@ import           Data.List          (sort)
 data Triangle = Triangle Int Int Int 
   deriving (Show, Read)
 instance Eq Triangle where
+    (==) :: Triangle -> Triangle -> Bool
     Triangle i j k == Triangle i' j' k' = sort [i, j, k] == sort [i', j', k']
 
 data Edge = Edge Int Int
   deriving (Show, Read)
 instance Eq Edge where
+    (==) :: Edge -> Edge -> Bool
     Edge i j == Edge i' j' = (i == i' && j == j') || (i == j' && j == i')
 
 data Vertex = Vertex Double Double
