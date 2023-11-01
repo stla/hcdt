@@ -47,6 +47,7 @@ library
                      , cpp/hcdt.hpp
                      , cpp/KDTree.h
                      , cpp/LocatorKDTree.h
+                     , cpp/portable_nth_element.hpp
                      , cpp/predicates.h
                      , cpp/remove_at.hpp
                      , cpp/Triangulation.h
