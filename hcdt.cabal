@@ -1,6 +1,6 @@
 cabal-version:       2.2
 name:                hcdt
-version:             0.1.1.0
+version:             0.1.1.1
 synopsis:            2d Delaunay triangulation
 description:         
     This library performs the constrained or unconstrained 2d Delaunay triangulation.
